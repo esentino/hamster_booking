@@ -16,9 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from chomik.views import Index
+from chomik.views import IndexView, RoomNewView, RoomModifyView, RoomDeleteView, RoomView
 
 urlpatterns = [
-    path('', Index.as_view(), name='main'),
+    path('', IndexView.as_view(), name='main'),
+    path('room/new', RoomNewView.as_view(), name='room_new'),
+    path('room/modify/<int:id>', RoomModifyView.as_view(), name='room_modify'),
+    path('room/delete/<int:id>', RoomDeleteView.as_view(), name='room_delete'),
+    path('room/<int:id>', RoomView.as_view(), name='room'),
     path('admin/', admin.site.urls),
 ]
