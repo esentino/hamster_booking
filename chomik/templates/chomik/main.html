@@ -1,7 +1,24 @@
 {% extends 'chomik/base.html' %}
-
+{% block title %}Strona prawilnie najpierwsza{% endblock%}
 {% block content %}
+<table border="1">
+    <thead>
+    <tr>
+        <th>NAzwa</th>
+        <th>pojemnosc</th>
+        <th>jest rzutnik</th>
+        <th>reszta</th>
+        <th>tutaj</th>
+    </tr>
+    </thead>
+{% for sala in salki %}
+<tr  style="background-color:{% if sala.is_unavailable_today %}magenta{% else %}green{% endif %}"><td>{{sala}}</td><td>{{ sala.capacity }}</td><td> {% if sala.projector %} Jest {% endif %}</td>
+<td><a href="{% url 'room_modify' id=sala.id %}">Edytuj</a></td>
+<td><a href="{% url 'room_delete' id=sala.id %}">Usuń</a></td>
+</tr>
+{% endfor %}
 
+</table>
 Ja tu byłem
 <blockquote>Chomik</blockquote>
 

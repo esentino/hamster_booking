@@ -3,10 +3,16 @@ from django.shortcuts import render
 # Create your views here.
 from django.views import View
 
+from chomik.models import Sala
+
 
 class IndexView(View):
     def get(self, request):
-        return render(request, 'chomik/main.html')
+        salki = Sala.objects.all()
+        ctx = dict(
+            salki=salki
+        )
+        return render(request, 'chomik/main.html', context=ctx)
 
 class RoomNewView(View):
     def get(self, request):
